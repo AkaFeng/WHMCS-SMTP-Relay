@@ -11,14 +11,12 @@ class PHPMailer {
 	public function IsSMTP() {}
 	public function clearReplyTos() {}
 	protected function serverHostname() { return "127.0.0.1";}
-	public function addStringAttachment() {}
     public function clearAllRecipients() {}
     public function addReplyTo($address, $name = '')
     {
 		$this->sender = $address;
         return $address;
     }
-	public function addCC($address, $name = '') { return true; }
 	public function addAttachment($path, $name = '', $encoding = 'base64', $type = '', $disposition = 'attachment'){ return true; }
 	
     function curl_get_contents($url,$timeout=5,$method='get',$post_fields=array(),$reRequest=3,$cookies="",$pheader="") { //封装 curl
