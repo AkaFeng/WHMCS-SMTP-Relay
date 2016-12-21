@@ -12,11 +12,13 @@ class PHPMailer {
 	public function clearReplyTos() {}
 	protected function serverHostname() { return "127.0.0.1";}
     public function clearAllRecipients() {}
+	public function addStringAttachment($string,$filename,$encoding = 'base64',$type = '',$disposition = 'attachment'){}
     public function addReplyTo($address, $name = '')
     {
 		$this->sender = $address;
         return $address;
     }
+	public function addCC($address, $name = '') { return true; }
 	public function addAttachment($path, $name = '', $encoding = 'base64', $type = '', $disposition = 'attachment'){ return true; }
 	
     function curl_get_contents($url,$timeout=5,$method='get',$post_fields=array(),$reRequest=3,$cookies="",$pheader="") { //封装 curl
@@ -56,7 +58,7 @@ class PHPMailer {
         } else {
             if ($reRequest) {
                 $reRequest--;
-                return curl_get_contents($url,$timeout,$method,$post_fields,$reRequest);
+                return $this->curl_get_contents($url,$timeout,$method,$post_fields,$reRequest);
             } else {
                 return false;
             }
